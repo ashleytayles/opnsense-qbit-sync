@@ -14,6 +14,9 @@ Q_HOST: str = os.getenv("Q_HOST")
 
 DISCOVERED_PORT: int = 0
 
+print(f"Key: {O_API_KEY}")
+print(f"Secret: {O_API_SECRET}")
+
 opnsense_session: requests.Session = requests.Session()
 opnsense_session.auth = (O_API_KEY, O_API_SECRET)
 opnsense_session.verify = False
