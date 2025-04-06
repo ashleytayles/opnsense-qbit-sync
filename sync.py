@@ -8,7 +8,7 @@ import urllib3
 urllib3.disable_warnings()
 
 class QBittorrent:
-    def __init__(self, host: str, port: int, user: str, password: str, ssl: bool, ssl_verify: bool):
+    def __init__(self, host: str, port: int, user: str, password: str, ssl: bool, ssl_verify: bool = True):
         self.host: str = host
         self.port: int = port
         self.user: str = user
@@ -121,8 +121,8 @@ class FirewallAlias:
 
 def main():
 
-    qbit = QBittorrent(Q_HOST, Q_PORT, Q_USER, Q_PASS, Q_SSL, Q_SSL_VERIFY)
-    opnsense: OPNSense = OPNSense(O_HOST, O_PORT, O_API_KEY, O_API_SECRET, O_SSL, O_SSL_VERIFY)
+    qbit = QBittorrent(Q_HOST, Q_PORT, Q_USER, Q_PASS, Q_SSL, ssl_verify=Q_SSL_VERIFY)
+    opnsense: OPNSense = OPNSense(O_HOST, O_PORT, O_API_KEY, O_API_SECRET, O_SSL, ssl_verify=O_SSL_VERIFY)
     source_alias: FirewallAlias = FirewallAlias(O_FORWARDED_PORT_ALIAS, opnsense)
 
 
@@ -139,14 +139,14 @@ if __name__ == "__main__":
     Q_HOST: str = os.getenv("Q_HOST")
     Q_PORT: int = os.getenv("Q_PORT", 443)
     Q_SSL: bool = os.getenv("Q_SSL", True)
-    Q_SSL_VERIFY: bool = os.getenv("Q_SSL", True)
+    Q_SSL_VERIFY: bool = os.getenv("Q_SSL_VERIFY", "True").lower() == "true"
 
     O_HOST: str = os.getenv("O_HOST")
     O_PORT: str = os.getenv("O_PORT", 8443)
     O_API_KEY: str = os.getenv("O_API_KEY")
     O_API_SECRET: str = os.getenv("O_API_SECRET")
     O_FORWARDED_PORT_ALIAS: str = os.getenv("O_FORWARDED_PORT_ALIAS")
-    O_SSL: bool = os.getenv("O_SSL")
-    O_SSL_VERIFY: bool = os.getenv("O_SSL_VERIFY")
+    O_SSL: bool = os.getenv("O_SSL", True)
+    O_SSL_VERIFY: bool = os.getenv("O_SSL_VERIFY", "True").lower() == "true"
     
     main()
