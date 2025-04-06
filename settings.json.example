@@ -1,0 +1,15 @@
+{
+    "Q_USER": "string",
+    "Q_PASS": "string",
+    "Q_HOST": "string",
+    "O_HOST": "string",
+    "O_PORT": 123,
+    "O_API_KEY": "string",
+    "O_API_SECRET": "string",
+    "O_FORWARDED_PORT_ALIAS": "string",
+    "Q_PORT": 123,
+    "Q_SSL": true,
+    "Q_SSL_VERIFY": true,
+    "O_SSL": false,
+    "O_SSL_VERIFY": false
+}
